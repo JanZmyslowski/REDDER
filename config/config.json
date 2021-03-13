@@ -1,0 +1,262 @@
+{
+  "FPS": 2,
+  "START_POSITION_LAT": 51.1266727,
+  "START_POSITION_LON": 16.9333977,
+  "PARSER_TYPE": "STANDARD",
+  "FRAME_DELIMITER": ",",
+  "DISCORD_TOKEN": "",
+  "DISCORD_CHANNEL_NAME": "",
+  "FRAME_PATTERN": [
+    "Gyro X",
+    "Gyro Y",
+    "Gyro Z"
+  ],
+  "commandsList": [
+    {
+      "value": "open valveOpenButton1",
+      "trigger": "valveOpenButton1",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "open valveOpenButton2",
+      "trigger": "valveOpenButton2",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "open valveOpenButton3",
+      "trigger": "valveOpenButton3",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "open valveOpenButton4",
+      "trigger": "valveOpenButton4",
+      "destinationControllerNames": [
+        "VALVES_CONTROLLER"
+      ]
+    },
+    {
+      "value": "test1",
+      "trigger": "test1",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "test2",
+      "trigger": "test2",
+      "destinationControllerNames": [
+        "CONNECTION_CONTROLLER"
+      ]
+    },
+    {
+      "value": "ABORT",
+      "trigger": "abortButton",
+      "destinationControllerNames": [
+        "ABORT_CONTROLLER"
+      ]
+    },
+    {
+      "value": "FIRE",
+      "trigger": "fireButton",
+      "destinationControllerNames": [
+        "START_CONTROL_CONTROLLER"
+      ]
+    }
+  ],
+  "notificationSchedule": [
+    {
+      "messageKey": "Map",
+      "everySecond": 5
+    },
+    {
+      "messageKey": "Data",
+      "everySecond": 10
+    }
+  ],
+  "notificationMessageKeys": [
+    "Map",
+    "Position",
+    "Data",
+    "Max",
+    "Thread status"
+  ],
+  "sensorRepository": {
+    "sensors": {
+      "Altitude2": {
+        "destination": "dataGauge10",
+        "name": "Altitude2",
+        "unit": "m",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 4500.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "Ind 1": {
+        "destination": "dataIndicator1",
+        "name": "Ind 1",
+        "unit": "m",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
+      },
+      "Recovery 1": {
+        "destination": "powerGauge2",
+        "name": "Recovery 1",
+        "unit": "V",
+        "destinationControllerNames": [
+          "POWER_CONTROLLER"
+        ],
+        "maxRange": 8.2,
+        "minRange": 7.2,
+        "isBoolean": false
+      },
+      "Ind 2": {
+        "destination": "dataIndicator2",
+        "name": "Ind 2",
+        "unit": "m",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
+      },
+      "Main computer": {
+        "destination": "powerGauge1",
+        "name": "Main computer",
+        "unit": "V",
+        "destinationControllerNames": [
+          "POWER_CONTROLLER"
+        ],
+        "maxRange": 8.2,
+        "minRange": 7.2,
+        "isBoolean": false
+      },
+      "Recovery 2": {
+        "destination": "powerGauge3",
+        "name": "Recovery 2",
+        "unit": "V",
+        "destinationControllerNames": [
+          "POWER_CONTROLLER"
+        ],
+        "maxRange": 8.2,
+        "minRange": 7.2,
+        "isBoolean": false
+      },
+      "Ind 3": {
+        "destination": "dataIndicator3",
+        "name": "Ind 3",
+        "unit": "m",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
+      },
+      "Ind 4": {
+        "destination": "dataIndicator4",
+        "name": "Ind 4",
+        "unit": "m",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": true
+      },
+      "Velocity": {
+        "destination": "dataGauge9",
+        "name": "Velocity",
+        "unit": "m/s",
+        "destinationControllerNames": [
+          "MORE_DATA_CONTROLLER"
+        ],
+        "maxRange": 400.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      },
+      "Altitude": {
+        "destination": "dataGauge1",
+        "name": "Altitude",
+        "unit": "m",
+        "destinationControllerNames": [
+          "DATA_CONTROLLER"
+        ],
+        "maxRange": 2000.0,
+        "minRange": 0.0,
+        "isBoolean": false
+      }
+    },
+    "gpsSensor": {
+      "destinationControllerNames": [
+        "MAP_CONTROLLER"
+      ],
+      "latitude": {
+        "name": "lat",
+        "unit": "m",
+        "destinationControllerNames": [],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      },
+      "longitude": {
+        "name": "long",
+        "unit": "m",
+        "destinationControllerNames": [],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      }
+    },
+    "gyroSensor": {
+      "axis_x": {
+        "destination": "dataGauge3",
+        "name": "Gyro X",
+        "unit": "m",
+        "destinationControllerNames": [
+          "DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      },
+      "axis_y": {
+        "destination": "dataGauge5",
+        "name": "Gyro Y",
+        "unit": "m",
+        "destinationControllerNames": [
+          "DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      },
+      "axis_z": {
+        "destination": "dataGauge7",
+        "name": "Gyro Z",
+        "unit": "m",
+        "destinationControllerNames": [
+          "DATA_CONTROLLER"
+        ],
+        "maxRange": 360.0,
+        "minRange": -360.0,
+        "isBoolean": false
+      },
+      "destinationControllerNames": [
+        "MAIN_CONTROLLER"
+      ]
+    }
+  }
+}

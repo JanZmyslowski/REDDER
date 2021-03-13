@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import eu.hansolo.tilesfx.addons.Indicator?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="335.0" prefWidth="410.0" style="-fx-background-color: -fx-backgroundColor-base;" stylesheets="@constants.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.pwrinspace.poliwrocket.Controller.ValvesController">
+   <children>
+      <Label layoutX="7.0" text="Valves:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Indicator fx:id="valveIndicator1" layoutX="102.0" layoutY="59.0" prefHeight="42.0" prefWidth="40.0" />
+      <Label fx:id="valveLabel1" layoutX="37.0" layoutY="54.0" text="Valve1" />
+      <Button fx:id="valveOpenButton1" layoutX="177.0" layoutY="63.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+      <Button fx:id="valveCloseButton1" layoutX="280.0" layoutY="63.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+      <Indicator fx:id="valveIndicator2" layoutX="102.0" layoutY="110.0" prefHeight="42.0" prefWidth="40.0" />
+      <Label fx:id="valveLabel2" layoutX="37.0" layoutY="105.0" text="Valve2" />
+      <Button fx:id="valveOpenButton2" layoutX="177.0" layoutY="114.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+      <Button fx:id="valveCloseButton2" layoutX="280.0" layoutY="114.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+      <Indicator fx:id="valveIndicator3" layoutX="102.0" layoutY="164.0" prefHeight="42.0" prefWidth="40.0" />
+      <Label fx:id="valveLabel3" layoutX="37.0" layoutY="159.0" text="Valve3" />
+      <Button fx:id="valveOpenButton3" layoutX="177.0" layoutY="168.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+      <Button fx:id="valveCloseButton3" layoutX="280.0" layoutY="168.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+      <Indicator fx:id="valveIndicator4" layoutX="102.0" layoutY="215.0" prefHeight="42.0" prefWidth="40.0" />
+      <Label fx:id="valveLabel4" layoutX="37.0" layoutY="210.0" text="Valve4" />
+      <Button fx:id="valveOpenButton4" layoutX="177.0" layoutY="219.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+      <Button fx:id="valveCloseButton4" layoutX="280.0" layoutY="219.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+      <Indicator fx:id="valveIndicator5" layoutX="102.0" layoutY="266.0" prefHeight="42.0" prefWidth="40.0" />
+      <Label fx:id="valveLabel5" layoutX="37.0" layoutY="261.0" text="Valve5" />
+      <Button fx:id="valveOpenButton5" layoutX="177.0" layoutY="270.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Open" />
+      <Button fx:id="valveCloseButton5" layoutX="280.0" layoutY="270.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="72.0" text="Close" />
+   </children>
+</AnchorPane>
