@@ -6,7 +6,6 @@ import javafx.beans.Observable;
 import org.jetbrains.annotations.NotNull;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.ControllerNameEnum;
-import pl.edu.pwr.pwrinspace.poliwrocket.Controller.NewMapController;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -91,8 +90,7 @@ public class Sensor implements Observable, ISensor {
             if (isBoolean
                     || this.timeStamp.toEpochMilli() - this.previousTimeStamp.toEpochMilli() >  1000
                     || this.values.size() % Configuration.getInstance().FPS == 0
-                    || obs instanceof Observable
-                    || obs instanceof NewMapController) {
+                    || obs instanceof Observable ){
 
                 obs.invalidated(this);
             }

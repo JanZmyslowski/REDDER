@@ -1,18 +1,17 @@
 package pl.edu.pwr.pwrinspace.poliwrocket.Controller;
 
-import com.interactivemesh.jfx.importer.ModelImporter;
-import com.interactivemesh.jfx.importer.tds.TdsModelImporter;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.*;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.SubScene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
@@ -21,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pl.edu.pwr.pwrinspace.poliwrocket.Controller.BasicController.BasicController;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
-import pl.edu.pwr.pwrinspace.poliwrocket.Model.Sensor.IGyroSensor;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.SerialPort.ISerialPortManager;
 import pl.edu.pwr.pwrinspace.poliwrocket.Thred.UI.UIThreadManager;
 
@@ -41,51 +39,28 @@ public class MainController extends BasicController implements InvalidationListe
     private ScrollPane inCommingPanel;
 
     @FXML
+    private TextArea inComing;
+
+    @FXML
     private ScrollPane outGoingPanel;
-    @FXML
-    private AnchorPane footer;
 
     @FXML
-    private SubScene modelScene;
-
-    @FXML
-    private SubScene dataScene;
-
-    @FXML
-    private SubScene valvesScene;
-
-    @FXML
-    private SubScene moreDataScene;
-
-    @FXML
-    private SubScene stateScene;
-
-    @FXML
-    private SubScene startControlScene;
+    private TextArea outGoing;
 
     @FXML
     private SubScene connectionScene;
 
     @FXML
-    private SubScene abortScene;
-
-    @FXML
-    private SubScene mapScene;
-
-    @FXML
-    private SubScene powerScene;
-
-    @FXML
-    private TextArea inComing;
-
-    @FXML
-    private TextArea outGoing;
+    private AnchorPane footer;
 
     @FXML
     private ImageView poliwrocketLogo;
 
     @FXML
     private ImageView inSpaceLogo;
+
+    @FXML
+    private SubScene chartScene;
 
     private final MainController.SmartGroup root = new SmartGroup();
 
@@ -94,23 +69,11 @@ public class MainController extends BasicController implements InvalidationListe
     private final List<Node> nodes = new ArrayList<>();
     private final HashMap<Node,Pair<Double,Double>> nodesInitPositions = new HashMap<>();
 
-    public SubScene getMapScene() {
-        return mapScene;
-    }
-
-    public void initSubScenes(FXMLLoader loaderData, FXMLLoader loaderMap, FXMLLoader loaderPower,
-                              FXMLLoader loaderValves, FXMLLoader loaderMoreData, FXMLLoader loaderAbort,
-                              FXMLLoader loaderStates, FXMLLoader loaderStart, FXMLLoader loaderConnection) {
+    public void initSubScenes(FXMLLoader loaderConnection, FXMLLoader loaderChart) {
         try {
-            dataScene.setRoot(loaderData.load());
-            mapScene.setRoot(loaderMap.load());
-            powerScene.setRoot(loaderPower.load());
-            valvesScene.setRoot(loaderValves.load());
-            moreDataScene.setRoot(loaderMoreData.load());
-            abortScene.setRoot(loaderAbort.load());
-            stateScene.setRoot(loaderStates.load());
-            startControlScene.setRoot(loaderStart.load());
+
             connectionScene.setRoot(loaderConnection.load());
+            chartScene.setRoot(loaderChart.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -121,16 +84,9 @@ public class MainController extends BasicController implements InvalidationListe
         controllerNameEnum = ControllerNameEnum.MAIN_CONTROLLER;
 
         //add nodes to list
-        nodes.add(dataScene);
-        nodes.add(mapScene);
-        nodes.add(powerScene);
-        nodes.add(valvesScene);
-        nodes.add(abortScene);
-        nodes.add(stateScene);
-        nodes.add(startControlScene);
+
         nodes.add(connectionScene);
-        nodes.add(moreDataScene);
-        nodes.add(modelScene);
+        nodes.add(chartScene);
         nodes.add(outGoingPanel);
         nodes.add(inCommingPanel);
         nodes.add(footer);
@@ -140,56 +96,12 @@ public class MainController extends BasicController implements InvalidationListe
         //set logo
         poliwrocketLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("Poliwrocket.png"))));
         inSpaceLogo.setImage(new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("inSpaceLogo.png"))));
-
-
-        //Creating camera
-        PerspectiveCamera camera = new PerspectiveCamera(true);
-        camera.setTranslateZ(-125); //-900
-        camera.setNearClip(0.01);
-        camera.setFarClip(3000.0);
-        camera.setFieldOfView(60);
-        modelScene.setCamera(camera);
-
-
-        PointLight light = new PointLight(Color.WHITE);
-        light.setTranslateX(0);
-        light.setTranslateY(6000);
-        light.setTranslateZ(300);
-        root.getChildren().add(light);
-
-        AmbientLight ambiance = new AmbientLight(Color.LIGHTGREY);
-        root.getChildren().add(ambiance);
-
-        //importing 3ds model
-        ModelImporter tdsImporter = new TdsModelImporter();
-        try {
-            tdsImporter.read("./assets/rocketModel/rocketModel.3DS");
-        } catch (Exception e){
-            logger.error(e.getMessage());
-            logger.info("Loading default model.");
-            tdsImporter.read(getClass().getClassLoader().getResource("rocketModel.3DS"));
-        }
-        Node[] tdsMesh = (Node[]) tdsImporter.getImport();
-
-        Node rocket3DModel = tdsMesh[0];
-        tdsImporter.close();
-        root.getChildren().add(rocket3DModel);
-        modelScene.setRoot(root);
-
-        modelScene.setOnScroll(scrollEvent -> modelScene.getCamera().setTranslateZ(Double.min(0 , modelScene.getCamera().getTranslateZ() + scrollEvent.getDeltaY())));
     }
 
     @Override
     public void invalidated(Observable observable) {
         if (observable instanceof IMessageParser) {
             UIThreadManager.getInstance().addImmediate(() -> inComing.appendText(((IMessageParser) observable).getLastMessage()));
-        } else if (observable instanceof IGyroSensor) {
-            UIThreadManager.getInstance().addImmediate(() -> {
-                var sensorValues = ((IGyroSensor) observable).getValueGyro();
-                root.rotateByX((int) Math.round((sensorValues.get(IGyroSensor.AXIS_X_KEY)) / 10) * 10);
-                root.rotateByY((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Y_KEY)) / 10) * 10);
-                root.rotateByZ((int) Math.round((sensorValues.get(IGyroSensor.AXIS_Z_KEY)) / 10) * 10);
-            });
         } else if (observable instanceof ISerialPortManager) {
             UIThreadManager.getInstance().addImmediate(() -> outGoing.appendText(((ISerialPortManager) observable).getLastSend() + "\n"));
         } else if(primaryStage.heightProperty().equals(observable) || primaryStage.widthProperty().equals(observable)) {

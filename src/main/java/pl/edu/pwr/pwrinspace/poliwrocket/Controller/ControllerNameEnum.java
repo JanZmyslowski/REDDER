@@ -13,5 +13,6 @@ public enum ControllerNameEnum implements ControllerNameEnumInterface {
     STATES_CONTROLLER,
     START_CONTROL_CONTROLLER,
     CONNECTION_CONTROLLER,
+    CHARTS_CONTROLLER,
 
 }

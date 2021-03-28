@@ -22,6 +22,9 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public int FPS = 10;
 
     @Expose
+    public int BUFFER_SIZE = 10;
+
+    @Expose
     public double START_POSITION_LAT;
 
     @Expose
@@ -61,6 +64,7 @@ public class ConfigurationSaveModel extends BaseSaveModel {
     public static ConfigurationSaveModel getConfigurationSaveModel(Configuration configuration) {
         ConfigurationSaveModel config = new ConfigurationSaveModel();
         config.FPS = configuration.FPS;
+        config.BUFFER_SIZE = configuration.BUFFER_SIZE;
         config.START_POSITION_LAT = configuration.START_POSITION_LAT;
         config.START_POSITION_LON = configuration.START_POSITION_LON;
         config.PARSER_TYPE = configuration.PARSER_TYPE;
@@ -100,11 +104,11 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.START_POSITION_LAT = 51.1266727;
 
         Sensor basicSensor = new Sensor();
-        basicSensor.setName("Altitude");
-        basicSensor.setDestination("dataGauge1");
+        basicSensor.setName("Thrust");
+        basicSensor.setDestination("chartView");
         basicSensor.setMaxRange(2000);
         basicSensor.setMinRange(0);
-        basicSensor.getDestinationControllerNames().add(ControllerNameEnum.DATA_CONTROLLER);
+        basicSensor.getDestinationControllerNames().add(ControllerNameEnum.CHARTS_CONTROLLER);
         defaultConfig.sensorRepository.addSensor(basicSensor);
 
         //utworzenie 3xSensor for GYRO
@@ -174,49 +178,6 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.FRAME_PATTERN.add("Gyro Z");
         //
 
-        Sensor velocity = new Sensor();
-        velocity.setDestination("dataGauge9");
-        velocity.setName("Velocity");
-        velocity.setMinRange(0);
-        velocity.setMaxRange(400);
-        velocity.setUnit("m/s");
-        velocity.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(velocity);
-
-        Sensor altitude = new Sensor();
-        altitude.setDestination("dataGauge10");
-        altitude.setName("Altitude2");
-        altitude.setMinRange(0);
-        altitude.setMaxRange(4500);
-        altitude.setUnit("m");
-        altitude.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(altitude);
-
-        Sensor indicator1 = new Sensor();
-        indicator1.setDestination("dataIndicator1");
-        indicator1.setName("Ind 1");
-        indicator1.setBoolean(true);
-        indicator1.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(indicator1);
-        Sensor indicator2 = new Sensor();
-        indicator2.setDestination("dataIndicator2");
-        indicator2.setName("Ind 2");
-        indicator2.setBoolean(true);
-        indicator2.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(indicator2);
-        Sensor indicator3 = new Sensor();
-        indicator3.setDestination("dataIndicator3");
-        indicator3.setName("Ind 3");
-        indicator3.setBoolean(true);
-        indicator3.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(indicator3);
-        Sensor indicator4 = new Sensor();
-        indicator4.setDestination("dataIndicator4");
-        indicator4.setName("Ind 4");
-        indicator4.setBoolean(true);
-        indicator4.getDestinationControllerNames().add(ControllerNameEnum.MORE_DATA_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(indicator4);
-
         //notification
         List<String> notificationsListStrings = new ArrayList<>();
         notificationsListStrings.add("Map");
@@ -232,33 +193,6 @@ public class ConfigurationSaveModel extends BaseSaveModel {
         defaultConfig.notificationSchedule = schedules;
         //---------------
 
-        //power
-        Sensor power1 = new Sensor();
-        power1.setMaxRange(8.2);
-        power1.setMinRange(7.2);
-        power1.setName("Main computer");
-        power1.setDestination("powerGauge1");
-        power1.setUnit("V");
-        power1.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(power1);
-        Sensor power2 = new Sensor();
-        power2.setMaxRange(8.2);
-        power2.setMinRange(7.2);
-        power2.setName("Recovery 1");
-        power2.setDestination("powerGauge2");
-        power2.setUnit("V");
-        power2.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(power2);
-        Sensor power3 = new Sensor();
-        power3.setMaxRange(8.2);
-        power3.setMinRange(7.2);
-        power3.setName("Recovery 2");
-        power3.setDestination("powerGauge3");
-        power3.setUnit("V");
-        power3.getDestinationControllerNames().add(ControllerNameEnum.POWER_CONTROLLER);
-        defaultConfig.sensorRepository.addSensor(power3);
-
-        //---------------
         return defaultConfig;
     }
 }

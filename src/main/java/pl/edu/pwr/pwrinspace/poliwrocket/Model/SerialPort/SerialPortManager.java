@@ -5,6 +5,7 @@ import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
 import javafx.beans.InvalidationListener;
 import org.slf4j.LoggerFactory;
+import pl.edu.pwr.pwrinspace.poliwrocket.Model.Configuration.Configuration;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.Frame;
 import pl.edu.pwr.pwrinspace.poliwrocket.Model.MessageParser.IMessageParser;
 import pl.edu.pwr.pwrinspace.poliwrocket.Service.Save.FrameSaveService;
@@ -144,9 +145,11 @@ public class SerialPortManager implements SerialPortEventListener, ISerialPortMa
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
-                byte[] buffer = new byte[1024];
-                int length = this.inputStream.read(buffer);
-                Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
+                //byte[] buffer = new byte[Configuration.getInstance().BUFFER_SIZE];
+                //int length = this.inputStream.read(buffer);
+                byte[] buffer = this.inputStream.readNBytes(Configuration.getInstance().BUFFER_SIZE);
+                //Frame frame = new Frame(new String(buffer, 0, length), Instant.now());
+                Frame frame = new Frame(new String(buffer, 0, Configuration.getInstance().BUFFER_SIZE), Instant.now());
                 messageParser.parseMessage(frame);
                 if(frameSaveService != null) {
                     if(frame.getFormattedContent() == null) {

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.SceneAntialiasing?>
 <?import javafx.scene.SubScene?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuBar?>
@@ -33,54 +32,6 @@
                      </children></AnchorPane>
                </content>
             </ScrollPane>
-            <SubScene fx:id="modelScene" depthBuffer="true" fill="#1a9cff" height="214.0" layoutX="1329.0" layoutY="551.0" width="206.0">
-                <antiAliasing>
-                    <SceneAntialiasing fx:constant="BALANCED" />
-                </antiAliasing>
-                <root>
-                    <Region stylesheets="@constants.css" />
-                </root>
-            </SubScene>
-            <SubScene fx:id="dataScene" height="677.0" layoutX="15.0" layoutY="10.0" width="410.0">
-              <root>
-                <Region />
-              </root>
-            </SubScene>
-            <SubScene fx:id="valvesScene" height="335.0" layoutX="454.0" layoutY="10.0" width="410.0">
-              <root>
-                <Region />
-              </root>
-            </SubScene>
-            <SubScene fx:id="mapScene" height="196.0" layoutX="1329.0" layoutY="350.0" width="206.0">
-              <root>
-                <Region />
-              </root>
-            </SubScene>
-            <SubScene fx:id="powerScene" height="335.0" layoutX="1329.0" layoutY="10.0" width="206.0">
-              <root>
-                <Region />
-              </root>
-            </SubScene>
-            <SubScene fx:id="moreDataScene" height="335.0" layoutX="454.0" layoutY="350.0" width="410.0">
-               <root>
-                  <Region />
-               </root>
-            </SubScene>
-            <SubScene fx:id="abortScene" height="75.0" layoutX="890.0" layoutY="690.0" width="410.0">
-               <root>
-                  <Region />
-               </root>
-            </SubScene>
-            <SubScene fx:id="stateScene" height="165.0" layoutX="890.0" layoutY="10.0" width="410.0">
-               <root>
-                  <Region />
-               </root>
-            </SubScene>
-            <SubScene fx:id="startControlScene" height="165.0" layoutX="890.0" layoutY="180.0" width="410.0">
-               <root>
-                  <Region />
-               </root>
-            </SubScene>
             <SubScene fx:id="connectionScene" height="335.0" layoutX="890.0" layoutY="350.0" width="410.0">
                <root>
                   <Region />
@@ -97,6 +48,11 @@
                   <ImageView fx:id="inSpaceLogo" fitHeight="20.0" fitWidth="75.0" layoutX="100.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
+            <SubScene fx:id="chartScene" height="672.0" layoutX="15.0" layoutY="14.0" width="850.0" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="685.4000000000001" AnchorPane.topAnchor="14.0">
+              <root>
+                <Region />
+              </root>
+            </SubScene>
       </children>
     </AnchorPane>
   </children>

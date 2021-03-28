@@ -21,6 +21,8 @@ public class Configuration {
 
     public int FPS = 10;
 
+    public int BUFFER_SIZE = 10;
+
     public double START_POSITION_LAT = 49.013517;
 
     public double START_POSITION_LON = 8.404435;
@@ -59,6 +61,7 @@ public class Configuration {
 
     public void setupConfigInstance(ConfigurationSaveModel config) {
         this.FPS = config.FPS;
+        this.BUFFER_SIZE = config.BUFFER_SIZE;
         this.START_POSITION_LAT = config.START_POSITION_LAT;
         this.START_POSITION_LON = config.START_POSITION_LON;
         this.PARSER_TYPE = config.PARSER_TYPE;

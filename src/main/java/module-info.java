@@ -19,6 +19,8 @@ module pl.edu.pwr.pwrinspace.poliwrocket {
     requires java.desktop;
     requires freetts;
     requires jdk.jshell;
+    requires org.jfree.chart.fx;
+    requires org.jfree.jfreechart;
 
     opens pl.edu.pwr.pwrinspace.poliwrocket to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base, com.google.gson;
     opens pl.edu.pwr.pwrinspace.poliwrocket.Controller to javafx.fxml, javafx.controls, javafx.web, javafx.graphics, javafx.media, javafx.base;
