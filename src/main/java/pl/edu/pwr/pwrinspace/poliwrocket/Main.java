@@ -168,21 +168,6 @@ public class Main extends Application {
             primaryStage.show();
             //--------------
 
-            new Thread(() -> {
-                float value = 0;
-                try {
-                    Thread.sleep(2000);
-                    while (true) {
-                        Configuration.getInstance().sensorRepository.getSensorByName("Thrust").setValue(value);
-                        value += 0.5;
-                        Thread.sleep(15);
-                    }
-                } catch (Exception e){
-
-                }
-
-
-            }).start();
         } catch (Exception e) {
             e.printStackTrace();
         }
