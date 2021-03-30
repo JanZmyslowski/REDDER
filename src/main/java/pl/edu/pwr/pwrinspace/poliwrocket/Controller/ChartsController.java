@@ -82,7 +82,7 @@ public class ChartsController extends BasicSensorController {
             Platform.requestNextPulse();
         }
 
-        if(Math.abs(10 - value) > 0 && !isTimerActive) {
+        if(value > 10 && !isTimerActive) {
             isTimerActive = true;
             autoSaveImageTimer.schedule(new TimerTask() {
                 @Override
